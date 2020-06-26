@@ -25,3 +25,4 @@ hs_err_pid*
 SearchAPI.iml
 stale_outputs_checked
 target/**
+/output
