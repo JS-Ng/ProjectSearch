@@ -1,4 +1,5 @@
 # Please run this script in root directory for deployment
+# This script deploys api locally within docker
 #cd searchAPI
 docker build -t "apiserver:latest" -f searchAPI/Dockerfile .
 docker rmi -f $(docker images -f "dangling=true" -q) # force remove all dangling images
