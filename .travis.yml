@@ -30,10 +30,12 @@ script:
   - docker rmi -f $(docker images -f "dangling=true" -q)
   - echo "$HEROKU_PASSWORD" | docker login -u "$HEROKU_USERNAME" --password-stdin registry.heroku.com;
   - docker tag "$API_NAME" registry.heroku.com/$HEROKU_APP_NAME/web
-deploy:
-  provider: script
-  script:
-    docker push registry.heroku.com/$HEROKU_APP_NAME/web;
-    heroku container:release web --app $HEROKU_APP_NAME;
-  on:
-    all_branches: true # this should be your branch name
+  - docker push registry.heroku.com/$HEROKU_APP_NAME/web
+  - heroku container:release web --app $HEROKU_APP_NAME
+#deploy:
+#  provider: script
+#  script:
+#    docker push registry.heroku.com/$HEROKU_APP_NAME/web;
+#    heroku container:release web --app $HEROKU_APP_NAME;
+#  on:
+#    all_branches: true # this should be your branch name
