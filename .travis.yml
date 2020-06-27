@@ -34,4 +34,6 @@ deploy:
     docker push $API_NAME;
     docker push registry.heroku.com/$HEROKU_APP_NAME/web;
     heroku container:release web --app $HEROKU_APP_NAME
-  branch: master
+  on:
+    tags: true
+    all_branches: true # this should be your branch name
