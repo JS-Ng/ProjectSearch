@@ -11,12 +11,15 @@ jdk:
 cache:
   directories:
   - "$HOME/.m2"
--services:
-  - docker
 env:
   - apiname="apiserver:latest"
   - NODE_VERSION="10"
+
+-services:
+  - docker
 before_install:
+  - wget https://raw.githubusercontent.com/creationix/nvm/v0.31.0/nvm.sh -O ~/.nvm/nvm.sh
+  - source ~/.nvm/nvm.sh
   - nvm install $NODE_VERSION
 ##   - . heroku.sh
 before_script:
