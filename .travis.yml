@@ -12,9 +12,7 @@ cache:
   directories:
   - "$HOME/.m2"
 env:
-  - apiname="apiserver:latest"
   - NODE_VERSION="10"
-
 -services:
   - docker
 before_install:
@@ -27,13 +25,13 @@ before_script:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
   - echo "$HEROKU_PASSWORD" | docker login -u "$HEROKU_USERNAME" --password-stdin registry.heroku.com
 script:
-  - docker build -t $apiname -f searchAPI/Dockerfile .
+  - docker build -t $API_NAME -f searchAPI/Dockerfile .
   - docker rmi -f $(docker images -f "dangling=true" -q)
-  - docker tag "$apiname" registry.heroku.com/$HROKU_APP_NAME/web
+  - docker tag "$API_NAME" registry.heroku.com/$HROKU_APP_NAME/web
 deploy:
   provider: script
   script:
-    docker push $apiname;
+    docker push $API_NAME;
     docker push registry.heroku.com/$HEROKU_APP_NAME/web;
     heroku container:release web --app $HEROKU_APP_NAME
   branch: master
