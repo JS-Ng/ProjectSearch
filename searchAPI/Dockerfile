@@ -21,7 +21,6 @@ WORKDIR /noteAPI
 RUN cd searchAPI && mvn package
 
 FROM openjdk:11-jdk
-EXPOSE 8080
 RUN mkdir -p /apiService
 WORKDIR /apiService
 COPY --from=builder /noteAPI/searchAPI/output .
