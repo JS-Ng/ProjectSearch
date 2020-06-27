@@ -1,4 +1,5 @@
 # some vars are defind in travis repo
+# HEROKU_API_KEY needs to be set in heroku deploy ci to login
 sudo: required
 branches:
     only:
@@ -27,11 +28,11 @@ before_script:
 script:
   - docker build -t $API_NAME -f searchAPI/Dockerfile .
   - docker rmi -f $(docker images -f "dangling=true" -q)
+  - echo "$HEROKU_PASSWORD" | docker login -u "$HEROKU_USERNAME" --password-stdin registry.heroku.com;
   - docker tag "$API_NAME" registry.heroku.com/$HEROKU_APP_NAME/web
 deploy:
   provider: script
   script:
-    echo "$HEROKU_PASSWORD" | docker login -u "$HEROKU_USERNAME" --password-stdin registry.heroku.com;
     docker push registry.heroku.com/$HEROKU_APP_NAME/web;
     heroku container:release web --app $HEROKU_APP_NAME;
   on:
