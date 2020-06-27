@@ -1,36 +1,36 @@
+# some vars are defind in travis repo
+sudo: required
 branches:
     only:
         - master
         - ci-integration
+        - dev
 language: java
 jdk:
 - openjdk11
 cache:
   directories:
   - "$HOME/.m2"
+-services:
+  - docker
 env:
+  - apiname="apiserver:latest"
   - NODE_VERSION="10"
 before_install:
   - nvm install $NODE_VERSION
 ##   - . heroku.sh
 before_script:
-  - cd front/videoroom
-#script:
-#  - npm install --save
-#  - cd client/entry_notebook
-#  - npm run build
-#  - cd ../../
-#  - cp -r -T front/videoroom/build src/main/resources/public
-#  - mv src/main/resources/public/index.html src/main/resources/templates
-#  - mvn clean test
-#  - git add --all
-#  - git add -f lib
-#  - git commit --allow-empty -m "remote heroku deploy"
-#
-#deploy:
-#  provider: heroku
-#  api_key:
-#    secure: M8Mwf0wm5bgSOBid8zMSz2d4rZuHSz5p8y/NkkrPDdgQcUNj9WhXa8eXglsh+pLphpviVeyngrdAPMQgoJNygs4/8zaU8Z7NsX6RgI386i1EpVV9e0vNVPVyu6wDgURt9CZS6kxS9+MQck4+LcJyRiF8YeS8JNovTvRsYIDroJT+k3Z+EgJi5ff71jP3jphz/QANPz9jd/o9hOLD40lfIWUW0zAZpT6jz02EODyRf9USm/stP1sLUOysUyT/iQ+oDHShUUlJw8lMzvL60W9HdAohpalFvJNa+rf/B6GO4l52M+UFkfNwWB+6vWEmSnHcNjW2Dml2WeOk+gDjlesFihTs3M0KPPa5LdvBIgpX7FBz9d0VHt7ao1Cy2rpm4AhrLM2X4Ux00/R5Gorxec/mH3L3VlSaXZP47UdoEYGTsn62Q5HzYBfeVyyzEvcRTRJKPLG5OLQvd3MDMgxULxP6PNPQN5Deme8GjYhk/PgYQtyZ7Mjq9uKuA4sjDQWDyZa9YpP2/CD87IOjDWteY8AtGjriTJOv2uRpzn9flvN6UkfA0uOkZrfPDraLUsLfqzKOHzBdQFrOIw4C99gmhDKXSEXqjDbDL/SFqd81KTVE3n9zm3LbXbpCfuMyh2HcnoTyp/vsvDCHr4LfHjk6SlJRGLqFC7LZAVUdVWJzSdEAW9Y=
-#  app: videohtroom
-#  on:
-#    repo: JS-Ng/teleRoom
+  - get -qO- https://toolbelt.heroku.com/install.sh | sh
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  - echo "$HEROKU_PASSWORD" | docker login -u "$HEROKU_USERNAME" --password-stdin registry.heroku.com
+script:
+  - docker build -t $apiname -f searchAPI/Dockerfile .
+  - docker rmi -f $(docker images -f "dangling=true" -q)
+  - docker tag "$apiname" registry.heroku.com/$HROKU_APP_NAME/web
+deploy:
+  provider: script
+  script:
+    docker push $apiname;
+    docker push registry.heroku.com/$HEROKU_APP_NAME/web;
+    heroku container:release web --app $HEROKU_APP_NAME
+  branch: master
