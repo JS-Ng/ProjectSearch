@@ -27,7 +27,7 @@ before_script:
 script:
   - docker build -t $API_NAME -f searchAPI/Dockerfile .
   - docker rmi -f $(docker images -f "dangling=true" -q)
-  - docker tag "$API_NAME" registry.heroku.com/$HROKU_APP_NAME/web
+  - docker tag "$API_NAME" registry.heroku.com/$HEROKU_APP_NAME/web
 deploy:
   provider: script
   script:
