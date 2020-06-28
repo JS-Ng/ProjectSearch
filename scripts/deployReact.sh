@@ -1,4 +1,5 @@
-cd $(pwd)/client/entry_notebook
+cd client/entry_notebook
+npm install --save
 npm run build
 cd ../../
 cp -r -T client/entry_notebook/build searchAPI/src/main/resources/static
