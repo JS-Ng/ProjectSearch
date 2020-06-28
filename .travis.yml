@@ -26,6 +26,7 @@ before_script:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
   - echo "$HEROKU_PASSWORD" | docker login -u "$HEROKU_USERNAME" --password-stdin registry.heroku.com
 script:
+  - bash ./scripts/deployReact.sh
   - docker build -t $API_NAME -f searchAPI/Dockerfile .
   - docker rmi -f $(docker images -f "dangling=true" -q)
   - echo "$HEROKU_PASSWORD" | docker login -u "$HEROKU_USERNAME" --password-stdin registry.heroku.com;

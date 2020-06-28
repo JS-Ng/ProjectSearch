@@ -13,7 +13,7 @@ public class Application {
 
     private static void setUpRouter(Blade bld) {
         bld.get("/", ctx-> {
-           ctx.render("test.html");
+           ctx.render("index.html");
         });
     }
 }
