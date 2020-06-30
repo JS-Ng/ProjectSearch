@@ -1,10 +1,11 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-
+import NotFoundPage from "./nofound/page404";
 function App() {
   return (
     <div className="App">
+      <NotFoundPage></NotFoundPage>
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
