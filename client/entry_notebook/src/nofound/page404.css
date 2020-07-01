@@ -1,0 +1,25 @@
+.error-template {padding: 40px 15px;text-align: center;}
+.error-actions {margin-top:15px;margin-bottom:15px;}
+.error-actions .btn { margin-right:10px; }
+
+.row-404 {
+    min-height: 18em;
+}
+
+.custom-col {
+    opacity: 0.4;
+}
+
+.custom-col:hover {
+    opacity: 1;
+}
+
+.btn {
+    background-color: white;
+    color: black;
+    border-color: grey;
+}
+
+.btn:hover {
+    background-color: grey;
+}
