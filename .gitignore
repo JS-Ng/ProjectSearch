@@ -25,3 +25,6 @@ hs_err_pid*
 ProjectSerarch.iml
 stale_outputs_checked
 target/**
+
+searchAPI/src/main/resources/static
+searchAPI/src/main/resources/templates

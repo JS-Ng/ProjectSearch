@@ -2,7 +2,7 @@ import React from "react";
 import CustomNavbar from "../common/widgets/CustomNavbar";
 import BootstrapComponent from "../core/BootstrapComponent";
 import "./page404.css";
-import { Container, Row, Col } from "react-bootstrap";
+import {Row, Col } from "react-bootstrap";
 import BgContainer from '../common/background/BgContainer.component';
 class NotFoundPage extends BootstrapComponent {
    
