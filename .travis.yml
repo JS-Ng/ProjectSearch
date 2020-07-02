@@ -1,0 +1,42 @@
+# some vars are defind in travis repo
+# HEROKU_API_KEY needs to be set in heroku deploy ci to login
+sudo: required
+branches:
+    only:
+        - master
+        - ci-integration
+        - dev
+language: java
+jdk:
+- openjdk11
+cache:
+  directories:
+  - "$HOME/.m2"
+env:
+  - NODE_VERSION="10"
+-services:
+  - docker
+before_install:
+  - wget https://raw.githubusercontent.com/creationix/nvm/v0.31.0/nvm.sh -O ~/.nvm/nvm.sh
+  - source ~/.nvm/nvm.sh
+  - nvm install $NODE_VERSION
+##   - . heroku.sh
+before_script:
+  - wget -qO- https://toolbelt.heroku.com/install.sh | sh
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  - echo "$HEROKU_PASSWORD" | docker login -u "$HEROKU_USERNAME" --password-stdin registry.heroku.com
+script:
+  - bash ./scripts/deployReact.sh
+  - docker build -t $API_NAME -f searchAPI/Dockerfile .
+  - docker rmi -f $(docker images -f "dangling=true" -q)
+  - echo "$HEROKU_PASSWORD" | docker login -u "$HEROKU_USERNAME" --password-stdin registry.heroku.com;
+  - docker tag "$API_NAME" registry.heroku.com/$HEROKU_APP_NAME/web
+  - docker push registry.heroku.com/$HEROKU_APP_NAME/web
+  - heroku container:release web --app $HEROKU_APP_NAME
+#deploy:
+#  provider: script
+#  script:
+#    docker push registry.heroku.com/$HEROKU_APP_NAME/web;
+#    heroku container:release web --app $HEROKU_APP_NAME;
+#  on:
+#    all_branches: true # this should be your branch name

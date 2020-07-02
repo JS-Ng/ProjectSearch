@@ -1,0 +1,11 @@
+.navbar .brand {
+    padding-top: 0px;
+    width: 50px;
+    height: 50px;
+}
+
+.navbar .nav-search {
+    max-width: 30em;
+    width: 25em;
+    min-width: auto;
+}
