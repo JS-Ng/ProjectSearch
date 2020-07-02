@@ -5,7 +5,6 @@ import HomePage from './home/homePage';
 function App() {
   return (
     <div className="App">
-      {/* <NotFoundPage></NotFoundPage> */}
       <HomePage></HomePage>
     </div>
   );
