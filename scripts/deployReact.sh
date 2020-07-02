@@ -1,4 +1,5 @@
 cd client/entry_notebook
+git submodule update --init --recursive
 npm install --save
 npm run build
 cd ../../
