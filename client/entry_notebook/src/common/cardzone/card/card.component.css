@@ -3,4 +3,6 @@
 }
 .note-card {
     width: 10em;
+    display: inline-block !important;
+    margin: 1em 1em 1em 1em !important;
 }
