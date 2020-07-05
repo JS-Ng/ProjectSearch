@@ -8,3 +8,8 @@ Technology stack:
 
 # structure graph:
 ![image](pic/structure.png)
+
+# dev-check:
+https://dev-notebook-api.herokuapp.com/
+# prod-check:
+https://prod-notebook-api.herokuapp.com/
