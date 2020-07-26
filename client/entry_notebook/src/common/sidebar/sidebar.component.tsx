@@ -1,71 +1,56 @@
 import React from 'react';
-import BootstrapComponent from '../../core/BootstrapComponent';
-import clsx from 'clsx';
-import { sidebarStyles } from './sidebar.component.style'
-import { makeStyles, ListItemText, ListItemIcon, ListItem, Divider, List, Button, Drawer } from '@material-ui/core';
-import { Dict } from '../../model/types/DictType';
-export class SideBar extends BootstrapComponent { 
-  render() {
-    type Anchor = 'top' | 'left' | 'bottom' | 'right';
-    const classes = sidebarStyles();
-    const [state, setState] = React.useState({
-      top: false,
-      left: false,
-      bottom: false,
-      right: false,
-    });
-  
-    const toggleDrawer = (anchor: Anchor, open: boolean) => (
-      event: React.KeyboardEvent | React.MouseEvent,
-    ) => {
-      if (
-        event.type === 'keydown' &&
-        ((event as React.KeyboardEvent).key === 'Tab' ||
-          (event as React.KeyboardEvent).key === 'Shift')
-      ) {
-        return;
-      }
-  
-      setState({ ...state, [anchor]: open });
+import 'react-pro-sidebar/dist/css/styles.css';
+import './sidebar.component.css';
+import {
+  FaHeart,
+  FaBars, FaHome, FaPepperHot, FaBook,
+  FaPen,
+  FaInbox,
+  FaArrowRight
+} from 'react-icons/fa';
+import { ProSidebar, SidebarHeader, SidebarContent, SidebarFooter, Menu, MenuItem, SubMenu } from 'react-pro-sidebar';
+import { IconContext} from 'react-icons';
+interface MyState { 
+  toggled: boolean,
+  collapsed: boolean
+}
+export class SideBar extends React.Component<{}, MyState>{
+  constructor(props: any) { 
+    super(props);
+    this.state = {
+      toggled: false,
+      collapsed: true
     };
-  
-    const list = (anchor: Anchor) => (
-      <div
-        className={clsx(classes.list, {
-          [classes.fullList]: anchor === 'top' || anchor === 'bottom',
-        })}
-        role="presentation"
-        onClick={toggleDrawer(anchor, false)}
-        onKeyDown={toggleDrawer(anchor, false)}
-      >
-        <List>
-          {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
-        <Divider />
-        <List>
-          {['All mail', 'Trash', 'Spam'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
-      </div>
-    );
-      return (
-        <div>
-        {(['left', 'right', 'top', 'bottom'] as Anchor[]).map((anchor) => (
-          <React.Fragment key={anchor}>
-            <Button onClick={toggleDrawer(anchor, true)}>{anchor}</Button>
-            <Drawer anchor={anchor} open={state[anchor]} onClose={toggleDrawer(anchor, false)}>
-              {list(anchor)}
-            </Drawer>
-          </React.Fragment>
-        ))}
-      </div>
+  }
+  onToggle(value: boolean) {
+    console.log("Hello: " + value);
+    this.setState({ toggled: !this.state.toggled });
+  }
+  expandSidebar() { 
+    this.setState({ collapsed: !this.state.collapsed });
+  }
+  render() {
+    return (
+      <IconContext.Provider value={{color: 'black', className: "sidebar-icon"}}>
+        
+        <ProSidebar className="custom-sidebar" 
+          onToggle={this.onToggle}
+          toggled={this.state.toggled}
+          collapsed={this.state.collapsed}
+          breakPoint="md">
+          <Menu iconShape="square">
+            <div onClick={()=>this.expandSidebar()}>
+              <MenuItem className="hover-text" icon={<FaArrowRight></FaArrowRight>}></MenuItem>
+            </div>
+            <MenuItem className="hover-text" icon={<FaHome/>}> Home </MenuItem>
+            <MenuItem className="hover-text" icon={<FaPepperHot/>}> Profile </MenuItem>
+            <SubMenu title="Diary" className="hover-text" icon={<FaBook></FaBook>}>
+              <MenuItem prefix={<FaPen></FaPen>}>Write Diary</MenuItem>
+              <MenuItem prefix={<FaInbox></FaInbox>}>My collection</MenuItem>
+          </SubMenu>
+          </Menu>
+        </ProSidebar>
+      </IconContext.Provider>
     );
   }
 }
