@@ -20,7 +20,7 @@ export default class CardZone extends BootstrapComponent {
             // https://stackoverflow.com/questions/54869777/react-typescript-adding-custom-attribute
             <div>
                 <NoteCard {...allowed_props} />
-                {cards.map(e => <NoteCard {...e} />)}
+                {cards.map((e, i) => <NoteCard {...e} key={i}/>)}
             </div>
         );
     }
