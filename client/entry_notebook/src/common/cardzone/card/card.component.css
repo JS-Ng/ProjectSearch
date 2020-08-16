@@ -1,8 +1,39 @@
-.note-card img{
-    width: 1em;
-}
-.note-card {
-    width: 10em;
+
+.zoom-wrapper {
     display: inline-block !important;
-    margin: 1em 1em 1em 1em !important;
+    width: auto;
+    height: auto;
+    min-height: 30em;
+}
+.zoom-wrapper :hover{
+    transform: scale(1.1);
+}
+
+.zoom-wrapper .note-card {
+    width: 17em; 
+    margin: 1em;
+}
+
+@media screen and (max-width: 1200px) {
+    .zoom-wrapper .note-card {
+        width: 10.5em;
+        margin: 0.5em;
+    }
+
+    @media screen and (max-width: 400em) {
+    .zoom-wrapper .note-card .img img{
+        width: 1em;
+    }
+}
+}
+
+@media screen and (max-width: 535px) {
+    .zoom-wrapper .note-card {
+        width: 5.5em;
+        height: 5em;
+        margin: 0.5em;
+    }
+}
+.note-card :hover {
+    transform: scale(1);
 }
