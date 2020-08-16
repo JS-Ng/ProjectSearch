@@ -6,6 +6,7 @@ import {
   FaBars, FaHome, FaPepperHot, FaBook,
   FaPen,
   FaInbox,
+  FaUser,
   FaArrowRight
 } from 'react-icons/fa';
 import { ProSidebar, SidebarHeader, SidebarContent, SidebarFooter, Menu, MenuItem, SubMenu } from 'react-pro-sidebar';
@@ -37,13 +38,14 @@ export class SideBar extends React.Component<{}, MyState>{
           onToggle={this.onToggle}
           toggled={this.state.toggled}
           collapsed={this.state.collapsed}
-          breakPoint="md">
+          >
+
           <Menu iconShape="square">
             <div onClick={()=>this.expandSidebar()}>
               <MenuItem className="hover-text" icon={<FaArrowRight></FaArrowRight>}></MenuItem>
             </div>
             <MenuItem className="hover-text" icon={<FaHome/>}> Home </MenuItem>
-            <MenuItem className="hover-text" icon={<FaPepperHot/>}> Profile </MenuItem>
+            <MenuItem className="hover-text" icon={<FaUser/>}> Profile </MenuItem>
             <SubMenu title="Diary" className="hover-text" icon={<FaBook></FaBook>}>
               <MenuItem prefix={<FaPen></FaPen>}>Write Diary</MenuItem>
               <MenuItem prefix={<FaInbox></FaInbox>}>My collection</MenuItem>

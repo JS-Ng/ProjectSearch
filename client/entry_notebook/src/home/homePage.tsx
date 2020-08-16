@@ -5,10 +5,9 @@ import "./homePage.css";
 import { Row, Col } from "react-bootstrap";
 import CardZone from '../common/cardzone/cardzone.component';
 import BgContainer from '../common/background/BgContainer.component';
-import {SideBar}from '../common/sidebar/sidebar.component';
 
 class HomePage extends BootstrapComponent {
-    render() { 
+    render() {
         return (
             <>
                 <CustomNavbar />

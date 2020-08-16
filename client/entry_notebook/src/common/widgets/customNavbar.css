@@ -8,7 +8,15 @@
     max-width: 30em;
     width: 25em;
     min-width: auto;
+    resize: horizontal
 }
+
+@media screen and (max-width: 550px) {
+    .navbar .nav-search {
+        width: 10em;
+    }
+}
+
 
 .navbar-wrapper  {
     width: 100%;
