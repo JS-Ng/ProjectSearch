@@ -1,6 +1,6 @@
 import BootstrapComponent from '../../../core/BootstrapComponent';
 import React from 'react';
-import { CardProp, CardProfile } from '../../../model/types/CardTypes';
+import { CardProfile } from '../../../model/types/CardTypes';
 import { Card, Icon, Image } from 'semantic-ui-react';
 import './card.component.css';
 class NoteCard extends BootstrapComponent { 
@@ -26,7 +26,7 @@ class NoteCard extends BootstrapComponent {
                     </Card.Description>
                     </Card.Content>
                     <Card.Content extra>
-                    <a>
+                    <a href="/profile">
                         <Icon name='user' />
                             {this.curInfo.connections} related
                     </a>

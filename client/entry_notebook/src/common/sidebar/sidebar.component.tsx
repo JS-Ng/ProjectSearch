@@ -2,14 +2,13 @@ import React from 'react';
 import 'react-pro-sidebar/dist/css/styles.css';
 import './sidebar.component.css';
 import {
-  FaHeart,
-  FaBars, FaHome, FaPepperHot, FaBook,
+  FaHome, FaBook,
   FaPen,
   FaInbox,
   FaUser,
   FaArrowRight
 } from 'react-icons/fa';
-import { ProSidebar, SidebarHeader, SidebarContent, SidebarFooter, Menu, MenuItem, SubMenu } from 'react-pro-sidebar';
+import { ProSidebar, Menu, MenuItem, SubMenu } from 'react-pro-sidebar';
 import { IconContext} from 'react-icons';
 interface MyState { 
   toggled: boolean,
@@ -44,8 +43,8 @@ export class SideBar extends React.Component<{}, MyState>{
             <div onClick={()=>this.expandSidebar()}>
               <MenuItem className="hover-text" icon={<FaArrowRight></FaArrowRight>}></MenuItem>
             </div>
-            <MenuItem className="hover-text" icon={<FaHome/>}> Home </MenuItem>
-            <MenuItem className="hover-text" icon={<FaUser/>}> Profile </MenuItem>
+            <MenuItem className="hover-text" icon={<FaHome/>}> <a href="/home"> Home </a></MenuItem>
+            <MenuItem className="hover-text" icon={<FaUser/>}> <a href="/profile">Profile</a></MenuItem>
             <SubMenu title="Diary" className="hover-text" icon={<FaBook></FaBook>}>
               <MenuItem prefix={<FaPen></FaPen>}>Write Diary</MenuItem>
               <MenuItem prefix={<FaInbox></FaInbox>}>My collection</MenuItem>

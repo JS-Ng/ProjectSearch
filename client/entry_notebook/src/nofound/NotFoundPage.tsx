@@ -30,7 +30,7 @@ class NotFoundPage extends BootstrapComponent {
                                     Back to your profile</h2>
                                     
                                     <div className="error-actions">
-                                        <a href="#" className="btn btn-primary btn-lg"><span className="glyphicon glyphicon-home"></span>
+                                        <a href="/profile" className="btn btn-primary btn-lg"><span className="glyphicon glyphicon-home"></span>
                                             Profile </a>
                                     </div>
                                 </div>
@@ -43,7 +43,7 @@ class NotFoundPage extends BootstrapComponent {
                                     <h2>
                                     Try draw a new card</h2>
                                     <div className="error-actions">
-                                        <a href="#" className="btn btn-primary btn-lg"><span className="glyphicon glyphicon-home"></span>
+                                        <a href="/" className="btn btn-primary btn-lg"><span className="glyphicon glyphicon-home"></span>
                                             Draw Card </a>
                                     </div>
                                 </div>

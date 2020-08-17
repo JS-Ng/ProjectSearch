@@ -9,18 +9,20 @@
     opacity: 0.7;
 }
 
-.custom-sidebar .hover-text :hover {
+.custom-sidebar .hover-text a :hover {
     color: black
 }
 
-.custom-sidebar .hover-text :active {
+.custom-sidebar .hover-text a :active {
     color: black
 }
 
 .custom-sidebar .hover-text {
     color: black
 }
-
+.custom-sidebar .hover-text a {
+    color: black;
+}
 .custom-sidebar div {
     background-color: lightgray !important;
 }
