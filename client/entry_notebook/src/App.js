@@ -1,11 +1,14 @@
 import React from 'react';
 import './App.css';
-import NotFoundPage from "./nofound/NotFoundPage";
-import HomePage from './home/homePage';
+import MainRouter from "./controller/MainRouter";
+
 function App() {
   return (
-    <div className="App">
-      <HomePage></HomePage>
+    // <div className="App">
+    //   <HomePage></HomePage>
+    // </div>
+    <div>
+      <MainRouter></MainRouter>
     </div>
   );
 }

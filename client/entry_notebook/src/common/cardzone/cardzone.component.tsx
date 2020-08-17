@@ -2,7 +2,6 @@ import React from 'react';
 import BootstrapComponent from '../../core/BootstrapComponent';
 import NoteCard from './card/card.component';
 import "./cardzone.component.css";
-import { Icon } from 'semantic-ui-react';
 export default class CardZone extends BootstrapComponent { 
     component_class = "cardZone"
     testInfo = {

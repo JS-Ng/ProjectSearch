@@ -1,10 +1,9 @@
 import React from 'react';
 import BootstrapComponent from "../../core/BootstrapComponent"
-import brand from "../../img/brand.jpg";
 import "./customNavbar.css";
 import {
     Navbar, Form,
-    FormControl, Button, Image
+    FormControl, Button
 } from 'react-bootstrap';
 import { SideBar } from '../sidebar/sidebar.component';
 class CustomNavbar extends BootstrapComponent { 
