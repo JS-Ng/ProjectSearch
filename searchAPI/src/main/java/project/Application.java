@@ -12,8 +12,9 @@ public class Application {
     }
 
     private static void setUpRouter(Blade bld) {
-        bld.get("/", ctx-> {
-           ctx.render("index.html");
+
+        bld.get("/*", ctx-> {
+            ctx.render("index.html");
         });
     }
 }

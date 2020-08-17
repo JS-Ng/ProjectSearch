@@ -13,8 +13,7 @@ class MainRouter extends React.Component {
               <HomePage></HomePage>
             </div>
           </Route>
-          <Route exact path='/invalid'>
-            <NotFoundPage></NotFoundPage>
+          <Route exact path='/invalid' component={NotFoundPage}>
           </Route>
           <Route path="/profile"></Route>
           <Redirect exact from="/" to="/home"></Redirect>
